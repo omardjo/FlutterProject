@@ -1,0 +1,5 @@
+{
+    "editor.inlineSuggest.showToolbar": "onHover",
+    "cmake.configureOnOpen": true,
+    "C_Cpp.errorSquiggles": "disabled"
+}

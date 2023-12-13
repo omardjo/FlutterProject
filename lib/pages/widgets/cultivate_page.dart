@@ -17,14 +17,14 @@ class _CultivatePageState extends State<CultivatePage> {
         title: const Text('Cultivate Plant'),
         backgroundColor: const Color(0xFF171821),
       ),
-      body: Center(
+      body: const Center(
         child: Card(
-          margin: const EdgeInsets.all(16.0),
+          margin: EdgeInsets.all(16.0),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Text(
                   'Welcome to Cultivate Page! This is a cultivate page.',
                   style: TextStyle(fontSize: 18.0),

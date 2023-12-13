@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:garduino_dashboard/model/scheduled_model.dart';
-import 'package:garduino_dashboard/widgets/custom_card.dart';
+import 'package:safeguard/model/scheduled_model.dart';
+import 'package:safeguard/pages/widgets/custom_card.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Scheduled extends StatelessWidget {

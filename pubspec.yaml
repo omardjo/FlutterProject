@@ -1,18 +1,20 @@
-name: garduino_dashboard
+name: safeguard
 description: A new Flutter project.
 
 publish_to: 'none' 
-
 
 version: 1.0.0+1
 
 environment:
   sdk: '>=2.19.5 <3.0.0'
 
-
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.13.4  
+  provider: ^6.0.1
+  uuid: ^3.0.5
+  
 
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.5
@@ -20,12 +22,16 @@ dependencies:
   connectivity: ^3.0.6
 
   wifi_info_flutter: ^2.0.2
+  flutter_inappwebview: ^5.8.0
+  flutter_p2p_connection: ^2.0.1
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
@@ -43,14 +49,12 @@ flutter_launcher_icons:
   macos:
     generate: true
     image_path: "assets/icon/icon.png"
+
 flutter:
-
   uses-material-design: true
-
   assets:
     - assets/images/
     - assets/svg/
-
   fonts:
     - family: IBMPlexSans
       fonts:
@@ -71,5 +75,4 @@ flutter:
         - asset: assets/fonts/IBMPlexSans-ExtraLight.ttf
           weight: 200
         - asset: assets/fonts/IBMPlexSans-Thin.ttf
-          weight: 100  
-  
+          weight: 100
