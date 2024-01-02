@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:safeguard/pages/SignIn/sign_in.dart';
 import 'package:safeguard/providers/user_provider.dart'; 
 import 'const.dart';
 import 'pages/SplashScreen/splash_screen.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'IBMPlexSans',
         brightness: Brightness.dark,
       ),
-      home: const SplashScreen(),
+      home: const SignInPage(),
     );
   }
 }

@@ -1,35 +1,55 @@
 import 'package:flutter/cupertino.dart';
 import 'package:safeguard/model/user_model.dart';
 import 'package:safeguard/services/user_api_service.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class UserProvider with ChangeNotifier {
-  User? _authenticatedUser;
+  List<User> _users = [];
+  String _invitationStatus = '';
 
-  User? get authenticatedUser => _authenticatedUser;
+  List<User> get users => _users;
 
-  Future<void> authenticateAdmin(String email, String password) async {
+  String get invitationStatus => _invitationStatus; // Add this getter
+
+  Future<User> authenticateAdmin(String email, String password) async {
     // Call the authenticateAdmin method from the ApiService
-    final User user = await ApiService.authenticateAdmin(email, password);
+    final User user = await UserApiService.authenticateAdmin(email, password);
 
-    // Print the user data for debugging
-    print('User data: $user');
+    // Add the user to the _users list
+    _users.add(user);
 
-    // Set the authenticated user
-    _authenticatedUser = User(
-      id: user.id,
-      userName: user.userName,
-      email: user.email,
-      password: user.password,
-      role: user.role, // Set default role if null
-      latitudeUser: user.latitudeUser,
-      longitudeUser: user.longitudeUser,
-      numeroTel: user.numeroTel,
-    );
-
-    // Print the authenticated user data for debugging
-    print('Authenticated user: $_authenticatedUser');
-
-    // Notify listeners that the authentication was successful
+    // Notify listeners that the data has changed
     notifyListeners();
+        return user;
+
+    
   }
+Future<User> getUserDetails() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String userId = prefs.getString('userId') ?? '';
+    return UserApiService.fetchUserProfile(userId);
+  }
+  Future<void> sendCredentialsByEmail(String adminEmail) async {
+    try {
+      // Update invitation status to indicate that it's in progress
+      _invitationStatus = 'Sending credentials...';
+      notifyListeners();
+
+      // Call the UserApiService method to send credentials
+      await UserApiService.sendCredentialsByEmail(adminEmail);
+
+      // Update invitation status to indicate success
+      _invitationStatus = 'Credentials sent successfully';
+      notifyListeners();
+    } catch (e) {
+      // Update invitation status to indicate failure
+      _invitationStatus = 'Failed to send credentials';
+      notifyListeners();
+    }
+  }
+
 }
+
+
+
+
+
